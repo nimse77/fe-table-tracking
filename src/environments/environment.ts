@@ -3,8 +3,23 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: true,
+  //baseUrl:'http://localhost:8080/api',
+  baseUrl: 'http://10.220.129.4:8080/api',
+  firebase: 
+     {
+      apiKey: "AIzaSyApJCgC0bWtwYem7kXRlqkbrRcpdn_oIBQ",
+      authDomain: "cust-table-track.firebaseapp.com",
+      projectId: "cust-table-track",
+      storageBucket: "cust-table-track.firebasestorage.app",
+      messagingSenderId: "817628663703",
+      appId: "1:817628663703:web:621eaa87b8c5ec70683ed2",
+      measurementId: "G-GMXQ2TRW8V",
+      vapidKey: "BIUNHe857C8p6JryUbDeYx3MWqimXs6i9PfdmTkWRhvMYlfkrVPOAL0669goz7KFFQQSnUP_esTWPWhhPpUFj-k"
+    }
 };
+
+
 
 /*
  * For easier debugging in development mode, you can import the following file

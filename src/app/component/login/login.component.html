@@ -1,0 +1,32 @@
+<ion-content class="ion-padding login-container">
+
+  <div class="login-card">
+    <h2 class="login-title">Waiter Login</h2>
+
+    <form (ngSubmit)="onLogin()" #loginForm="ngForm">
+
+      <!-- Username -->
+      <ion-item>
+        <ion-label position="floating">Username</ion-label>
+        <ion-input type="text" [(ngModel)]="WaiterInfo.waiterId" name="username" required></ion-input>
+      </ion-item>
+
+      <!-- Restaurant ID -->
+      <ion-item>
+        <ion-label position="floating">Restaurant ID</ion-label>
+        <ion-input type="text" [(ngModel)]="WaiterInfo.restaurantId" name="restaurantId" required></ion-input>
+      </ion-item>
+
+      <!-- Waiter Name -->
+      <ion-item>
+        <ion-label position="floating">Waiter Name</ion-label>
+        <ion-input type="text" [(ngModel)]="WaiterInfo.waiterName" name="waiterName" required></ion-input>
+      </ion-item>
+
+      <ion-button expand="block" type="submit" [disabled]="!loginForm.form.valid" class="login-btn">
+        Login
+      </ion-button>
+    </form>
+  </div>
+
+</ion-content>

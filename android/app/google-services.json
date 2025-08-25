@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "817628663703",
+    "project_id": "cust-table-track",
+    "storage_bucket": "cust-table-track.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:817628663703:android:34338dd1d64388ef683ed2",
+        "android_client_info": {
+          "package_name": "io.ionic.starter"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAeq8WaRVlMYenNaPA0NDkCQt6hV2h0T_I"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
