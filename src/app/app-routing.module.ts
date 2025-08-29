@@ -4,7 +4,7 @@ import {QRScanComponent }  from './component/qrscan/qrscan.component';
 import { LocationCheckComponent } from './component/location-check/location-check.component';
 import {TableRequestComponent } from './component/table-request/table-request.component';
 import { LoginComponent } from './component/login/login.component';
- 
+import { NotificationsComponent} from './component/notification/notifications.component'
 const routes: Routes = [
   //  {
   //   path: '',
@@ -24,6 +24,10 @@ const routes: Routes = [
   {
     path: 'login',
     component: LoginComponent
+  },
+  {
+    path:'notifications/:username',
+    component:NotificationsComponent
   },
    {
     path: 'location-check/:restaurantId/:tableId',

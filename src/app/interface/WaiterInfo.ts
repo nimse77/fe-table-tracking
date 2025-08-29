@@ -1,5 +1,6 @@
 export interface WaiterInfo {
-  waiterId: string;
+  username:string;
+  password:string;
   restaurantId: string;
   waiterName: string;
   fcmToken: string;

@@ -4,7 +4,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { IonicModule } from '@ionic/angular';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-
+import { CommonModule } from '@angular/common';
 import { QRScanComponent } from './component/qrscan/qrscan.component';
 import { TableRequestComponent } from './component/table-request/table-request.component';
 import { provideFirestore, getFirestore } from '@angular/fire/firestore';
@@ -30,6 +30,7 @@ import { environment } from '../environments/environment';
     IonicModule.forRoot(),
     AppRoutingModule,
     HttpClientModule,
+    CommonModule,
 
     // ✅ Initialize Firebase once here
     AngularFireModule.initializeApp(environment.firebase),
@@ -43,7 +44,10 @@ import { environment } from '../environments/environment';
     // provideFirestore(() => getFirestore()),
     // provideMessaging(() => getMessaging()),
   ],
-  providers: [],
+   providers: [
+    provideFirebaseApp(() => initializeApp(environment.firebase)),
+    provideFirestore(() => getFirestore()),
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule { }

@@ -1,34 +1,50 @@
 import { Component, OnInit } from '@angular/core';
-import {FirebaseMessagingService} from '../../services/fcm/firebase-messaging.service';
-import { IonicModule } from '@ionic/angular';
-import { FormsModule } from '@angular/forms';
 import {WaiterInfo } from '../../interface/WaiterInfo';
+import {AuthService} from '../../services/auth/auth.service';
+import { Router } from '@angular/router';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { IonicModule } from '@ionic/angular';
+
 @Component({
   selector: 'app-login',
-   imports: [IonicModule, FormsModule],
+   imports: [CommonModule, FormsModule, IonicModule],
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
+  
 })
 export class LoginComponent  implements OnInit {
 
-  constructor(
-    private firebaseMessagingService:FirebaseMessagingService,
-  ) { }
+   errorMessage: string = '';
 
-  ngOnInit() {}
-
-  //  WaiterInfo = {
-  //   waiterId: '',
-  //   restaurantId: '',
-  //   waiterName: '',
-  //   fcmToken:'',
-  // };
- WaiterInfo: WaiterInfo = {
-  waiterId: '',
+waiterInfo: WaiterInfo = {
+  username: '',
+  password:'',
   restaurantId: '',
   waiterName: '',
   fcmToken: ''
 };
+
+  constructor(
+    private authService:AuthService,
+    private router:Router,
+  ) { }
+
+  ngOnInit() {}
+
+    async login() {
+    this.errorMessage = '';
+    this.authService.login(this.waiterInfo).subscribe({
+      next: (res) => {
+        this.router.navigate(['/notifications',this.waiterInfo.username]);
+      },
+      error: (err) => {
+        this.errorMessage = 'Invalid username or password';
+      }
+    });
+  }
+
+
 
 
 
@@ -42,19 +58,19 @@ export class LoginComponent  implements OnInit {
   //   }
   //   console.log('Login data:', this.WaiterInfo);
   // }
-  async onLogin() {
-  try {
-     await this.firebaseMessagingService.requestPermissionAndSaveToken(this.WaiterInfo.waiterId);
+//   async onLogin() {
+//   try {
+//      await this.firebaseMessagingService.requestPermissionAndSaveToken(this.waiterInfo.username);
 
-    this.WaiterInfo.fcmToken = this.firebaseMessagingService.fcmToken;
+//     this.waiterInfo.fcmToken = this.firebaseMessagingService.fcmToken;
 
-    if (this.WaiterInfo.fcmToken) {
-      await this.firebaseMessagingService.saveTokenToBackend(this.WaiterInfo);
-      console.log('✅ Token saved:', this.WaiterInfo);
-    }
-  } catch (error) {
-    console.error('❌ Error during token request:', error);
-  }
-}
+//     if (this.waiterInfo.fcmToken) {
+//       await this.firebaseMessagingService.saveTokenToBackend(this.waiterInfo);
+//       console.log('✅ Token saved:', this.waiterInfo);
+//     }
+//   } catch (error) {
+//     console.error('❌ Error during token request:', error);
+//   }
+// }
 
 }

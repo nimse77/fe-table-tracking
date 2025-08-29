@@ -8,9 +8,6 @@ import {environment } from '../../../environments/environment'
 })
 export class TableService {
   baseUrl=`${environment.baseUrl}`;
-
- // private baseUrl='http://localhost:8080/api'
-  //private baseUrl='http://10.198.190.4:8080/api'
   
   constructor(
     private http:HttpClient,

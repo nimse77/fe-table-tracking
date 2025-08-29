@@ -4,8 +4,8 @@
 
 export const environment = {
   production: true,
-  //baseUrl:'http://localhost:8080/api',
-  baseUrl: 'http://10.220.129.4:8080/api',
+  baseUrl:'http://10.41.131.88:8080/api',
+  //baseUrl: 'https://10.41.131.88/api',
   firebase: 
      {
       apiKey: "AIzaSyApJCgC0bWtwYem7kXRlqkbrRcpdn_oIBQ",

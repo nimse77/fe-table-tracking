@@ -1,32 +1,63 @@
-<ion-content class="ion-padding login-container">
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Waiter Login</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-item>
+    <ion-label position="floating">Username</ion-label>
+    <ion-input [(ngModel)]="waiterInfo.username"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="floating">Password</ion-label>
+    <ion-input type="password" [(ngModel)]="waiterInfo.password"></ion-input>
+  </ion-item>
+
+   <ion-item>
+        <ion-label position="floating">Restaurant ID</ion-label>
+        <ion-input type="text" [(ngModel)]="waiterInfo.restaurantId" name="restaurantId" required></ion-input>
+   </ion-item>
+
+  <ion-button expand="block" color="primary" (click)="login()">Login</ion-button>
+
+  <ion-text color="danger" *ngIf="errorMessage">
+    <p>{{ errorMessage }}</p>
+  </ion-text>
+</ion-content>
+
+
+
+<!-- <ion-content class="ion-padding login-container">
 
   <div class="login-card">
     <h2 class="login-title">Waiter Login</h2>
 
-    <form (ngSubmit)="onLogin()" #loginForm="ngForm">
+    <form (ngSubmit)="onLogin()" #loginForm="ngForm"> -->
 
       <!-- Username -->
-      <ion-item>
+      <!-- <ion-item>
         <ion-label position="floating">Username</ion-label>
         <ion-input type="text" [(ngModel)]="WaiterInfo.waiterId" name="username" required></ion-input>
-      </ion-item>
+      </ion-item> -->
 
       <!-- Restaurant ID -->
-      <ion-item>
+      <!-- <ion-item>
         <ion-label position="floating">Restaurant ID</ion-label>
         <ion-input type="text" [(ngModel)]="WaiterInfo.restaurantId" name="restaurantId" required></ion-input>
-      </ion-item>
+      </ion-item> -->
 
       <!-- Waiter Name -->
-      <ion-item>
+      <!-- <ion-item>
         <ion-label position="floating">Waiter Name</ion-label>
         <ion-input type="text" [(ngModel)]="WaiterInfo.waiterName" name="waiterName" required></ion-input>
-      </ion-item>
+      </ion-item> -->
 
-      <ion-button expand="block" type="submit" [disabled]="!loginForm.form.valid" class="login-btn">
+      <!-- <ion-button expand="block" type="submit" [disabled]="!loginForm.form.valid" class="login-btn">
         Login
       </ion-button>
     </form>
   </div>
 
-</ion-content>
+</ion-content> -->

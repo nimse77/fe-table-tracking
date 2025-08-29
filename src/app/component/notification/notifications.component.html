@@ -1,0 +1,23 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Notifications</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list *ngIf="requests.length > 0; else empty">
+    <ion-item *ngFor="let req of requests">
+      <ion-label>
+        <h2>Table {{req.tableNumber}}</h2>
+        <p>{{req.message}}</p>
+      </ion-label>
+      <ion-button color="success" (click)="acknowledge(req)">Accept</ion-button>
+    </ion-item>
+  </ion-list>
+
+  <ng-template #empty>
+    <ion-text color="medium">
+      <p class="ion-text-center">No new requests 🎉</p>
+    </ion-text>
+  </ng-template>
+</ion-content>
