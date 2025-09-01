@@ -21,9 +21,8 @@ export class NotificationsComponent  implements OnInit {
 
   ngOnInit() {
     this.username = this.route.snapshot.paramMap.get('username') || '';
-
+   this.getRequests();
     this.fcm.requestPermissionAndSaveToken(this.username);
-    this.getRequests();
   }
   getRequests(){
     this.fcm.getRequests(this.username).subscribe((reqs: any[]) => {

@@ -120,10 +120,20 @@ FirebaseMessaging.addListener(
   }
 }
 
- async saveTokenToBackend(username: any,fcmToken:string): Promise<void> {
-    console.log('📡 Sending token to backend:', username,"",fcmToken);
-    this.http.get(`${this.baseUrl}/waiter/tokensave/${username}/${fcmToken}`);
+async saveTokenToBackend(username: string, fcmToken: string): Promise<void> {
+  console.log('📡 Sending token to backend:', username, fcmToken);
+
+  this.http.get(`${this.baseUrl}/waiter/tokensave/${username}/${fcmToken}`)
+    .subscribe({
+      next: (res) => {
+        console.log('✅ Token saved successfully:', res);
+      },
+      error: (err) => {
+        console.error('❌ Error saving token:', err);
+      }
+    });
 }
+
 
  getRequests(waiterId: string): Observable<any[]> {
     const ref = collection(this.firestore, 'waiter_requests');
