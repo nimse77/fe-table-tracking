@@ -1,4 +1,3 @@
-
 export const environment = {
  production: true,
  // baseUrl: 'http://13.232.106.27:8080/api',
@@ -14,5 +13,4 @@ export const environment = {
       measurementId: "G-GMXQ2TRW8V",
       vapidKey: "BIUNHe857C8p6JryUbDeYx3MWqimXs6i9PfdmTkWRhvMYlfkrVPOAL0669goz7KFFQQSnUP_esTWPWhhPpUFj-k"
     }
-};
-
+}
