@@ -1,0 +1,33 @@
+ion-content {
+  --background: #f4f6f9;
+}
+
+.form-container {
+  max-width: 400px;
+  margin: 40px auto;
+  background: #fff;
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+ion-item {
+  margin-bottom: 15px;
+  --highlight-color-focused: var(--ion-color-primary);
+}
+
+ion-input {
+  font-size: 15px;
+}
+
+ion-button {
+  border-radius: 8px;
+  font-weight: bold;
+}
+
+.message {
+  text-align: center;
+  margin-top: 15px;
+  font-size: 14px;
+  color: var(--ion-color-success);
+}

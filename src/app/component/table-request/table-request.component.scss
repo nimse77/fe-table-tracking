@@ -1,0 +1,30 @@
+.radio-list {
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+  background: #fff;
+}
+
+.radio-item {
+  --background: #f9f9f9;
+  --color: #222;
+  margin: 4px 0;
+  border-radius: 8px;
+  transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.radio-item:hover {
+  --background: #e8f4ff;
+  transform: scale(1.02);
+}
+
+ion-radio {
+  --color-checked: #3880ff; /* Ionic blue when selected */
+  --color: #999;            /* Default grey */
+}
+
+ion-button {
+  margin-top: 20px;
+  font-weight: 600;
+  box-shadow: 0 4px 12px rgba(56, 128, 255, 0.3);
+}

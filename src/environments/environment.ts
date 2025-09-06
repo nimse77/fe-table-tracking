@@ -3,8 +3,8 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: true,
-  baseUrl:'http://10.41.131.4:8080/api',
+production: true,
+  baseUrl: 'http://localhost:8080/api',
   //baseUrl: 'https://10.41.131.88/api',
   firebase: 
      {

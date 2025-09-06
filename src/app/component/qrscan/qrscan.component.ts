@@ -7,15 +7,15 @@ import { AlertController } from '@ionic/angular';
   templateUrl: './qrscan.component.html',
   styleUrls: ['./qrscan.component.scss'],
 })
-export class QRScanComponent  implements OnInit {
+export class QRScanComponent implements OnInit {
 
-  restaurantLat = 18.5204; 
+  restaurantLat = 18.5204;
   restaurantLng = 73.8567;
   allowedRadiusInMeters = 100;
 
-  constructor(private alertCtrl: AlertController) {}
+  constructor(private alertCtrl: AlertController) { }
 
-  
+
   ngOnInit() {
     this.checkUserLocation();
   }

@@ -15,49 +15,16 @@
     <ion-input type="password" [(ngModel)]="waiterInfo.password"></ion-input>
   </ion-item>
 
-   <ion-item>
-        <ion-label position="floating">Restaurant ID</ion-label>
-        <ion-input type="text" [(ngModel)]="waiterInfo.restaurantId" name="restaurantId" required></ion-input>
-   </ion-item>
-
   <ion-button expand="block" color="primary" (click)="login()">Login</ion-button>
 
   <ion-text color="danger" *ngIf="errorMessage">
     <p>{{ errorMessage }}</p>
   </ion-text>
-</ion-content>
 
-
-
-<!-- <ion-content class="ion-padding login-container">
-
-  <div class="login-card">
-    <h2 class="login-title">Waiter Login</h2>
-
-    <form (ngSubmit)="onLogin()" #loginForm="ngForm"> -->
-
-      <!-- Username -->
-      <!-- <ion-item>
-        <ion-label position="floating">Username</ion-label>
-        <ion-input type="text" [(ngModel)]="WaiterInfo.waiterId" name="username" required></ion-input>
-      </ion-item> -->
-
-      <!-- Restaurant ID -->
-      <!-- <ion-item>
-        <ion-label position="floating">Restaurant ID</ion-label>
-        <ion-input type="text" [(ngModel)]="WaiterInfo.restaurantId" name="restaurantId" required></ion-input>
-      </ion-item> -->
-
-      <!-- Waiter Name -->
-      <!-- <ion-item>
-        <ion-label position="floating">Waiter Name</ion-label>
-        <ion-input type="text" [(ngModel)]="WaiterInfo.waiterName" name="waiterName" required></ion-input>
-      </ion-item> -->
-
-      <!-- <ion-button expand="block" type="submit" [disabled]="!loginForm.form.valid" class="login-btn">
-        Login
-      </ion-button>
-    </form>
+  <div class="ion-text-center ion-margin-top">
+    <p>
+      Don’t have an account? 
+      <ion-button fill="clear" (click)="goToRegister()">Register</ion-button>
+    </p>
   </div>
-
-</ion-content> -->
+</ion-content>

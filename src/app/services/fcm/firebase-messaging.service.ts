@@ -6,10 +6,12 @@ import { PushNotifications } from '@capacitor/push-notifications';
 import { FirebaseMessaging } from '@capacitor-firebase/messaging';
 import { firstValueFrom } from 'rxjs';
 import { LocalNotifications } from '@capacitor/local-notifications';
-import { Firestore, collection, collectionData, updateDoc, doc } from '@angular/fire/firestore';
+import { Firestore, collection, collectionData, updateDoc, doc, query, orderBy } from '@angular/fire/firestore';
 import { initializeApp } from 'firebase/app';
 import { getMessaging, getToken, onMessage, Messaging } from 'firebase/messaging';
 import { Observable } from 'rxjs';
+import { inject } from '@angular/core';
+import { NgZone } from '@angular/core';
 
 
 @Injectable({
@@ -17,12 +19,14 @@ import { Observable } from 'rxjs';
 })
 export class FirebaseMessagingService {
   messaging?: Messaging;
-  fcmToken:string='';
+  fcmToken: string = '';
   baseUrl = `${environment.baseUrl}`;
+  private firestore: Firestore = inject(Firestore);
 
   constructor(
     private http: HttpClient,
-    private firestore: Firestore
+    private ngZone: NgZone
+    // private firestore: Firestore
   ) {
     // Only init Web SDK if running in browser
     if (Capacitor.getPlatform() === 'web') {
@@ -49,7 +53,7 @@ export class FirebaseMessagingService {
       if (permission !== 'granted') {
         throw new Error('Notification permission not granted');
       }
- 0
+      0
       // Register Service Worker
       const registration = await navigator.serviceWorker.register('/firebase-messaging-sw.js');
 
@@ -57,7 +61,7 @@ export class FirebaseMessagingService {
         vapidKey: environment.firebase.vapidKey,
         serviceWorkerRegistration: registration
       });
-      this.fcmToken=token;
+      this.fcmToken = token;
 
       if (!token) throw new Error('Failed to get FCM token');
 
@@ -67,81 +71,81 @@ export class FirebaseMessagingService {
     }
   }
   async requestMobilePermission(username: string): Promise<void> {
-  try {
-    const permStatus = await PushNotifications.requestPermissions();
-    if (permStatus.receive !== 'granted') {
-      throw new Error('Push notification permission not granted');
+    try {
+      const permStatus = await PushNotifications.requestPermissions();
+      if (permStatus.receive !== 'granted') {
+        throw new Error('Push notification permission not granted');
+      }
+
+      await PushNotifications.register();
+
+      PushNotifications.addListener('registration', async (token) => {
+        console.log('📱 Native push token (not FCM):', token.value);
+
+        const fcmToken = await FirebaseMessaging.getToken();
+        this.fcmToken = fcmToken.token;
+        if (!fcmToken.token) {
+          throw new Error('Failed to get Firebase token');
+        }
+        this.saveTokenToBackend(username, this.fcmToken);
+        console.log('🔥 Firebase FCM token:', fcmToken.token);
+      });
+
+      PushNotifications.addListener('registrationError', (err) => {
+        console.error('❌ Push registration error:', err);
+      });
+
+      // 👇 Handle incoming messages
+      FirebaseMessaging.addListener(
+        'notificationReceived',
+        async (event) => {
+          console.log('📩 FCM notification received:', event);
+
+          // Show local notification when app is in foreground
+          await LocalNotifications.schedule({
+            notifications: [
+              {
+                id: Date.now(),
+                title: event.notification?.title || 'New Notification',
+                body: event.notification?.body || '',
+                schedule: { at: new Date(Date.now() + 1000) }, // optional 1-second delay
+              },
+            ],
+          });
+        }
+      );
+
+    } catch (err) {
+      console.error('Mobile FCM error:', err);
+      throw err;
     }
+  }
 
-    await PushNotifications.register();
+  async saveTokenToBackend(username: string, fcmToken: string): Promise<void> {
+    console.log('📡 Sending token to backend:', username, fcmToken);
 
-    PushNotifications.addListener('registration', async (token) => {
-      console.log('📱 Native push token (not FCM):', token.value);
-
-      const fcmToken = await FirebaseMessaging.getToken();
-      this.fcmToken = fcmToken.token;
-      if (!fcmToken.token) {
-        throw new Error('Failed to get Firebase token');
-      }
-      this.saveTokenToBackend(username,this.fcmToken);
-      console.log('🔥 Firebase FCM token:', fcmToken.token);
-
-      // TODO: Save to backend
-      // await this.saveTokenToBackend(waiterId, fcmToken.token);
-    });
-
-    PushNotifications.addListener('registrationError', (err) => {
-      console.error('❌ Push registration error:', err);
-    });
-
-    // 👇 Handle incoming messages
-FirebaseMessaging.addListener(
-  'notificationReceived',
-  async (event) => {
-    console.log('📩 FCM notification received:', event);
-
-    // Show local notification when app is in foreground
-    await LocalNotifications.schedule({
-      notifications: [
-        {
-          id: Date.now(),
-          title: event.notification?.title || 'New Notification',
-          body: event.notification?.body || '',
-          schedule: { at: new Date(Date.now() + 1000) }, // optional 1-second delay
+    this.http.get(`${this.baseUrl}/waiter/tokensave/${username}/${fcmToken}`)
+      .subscribe({
+        next: (res) => {
+          console.log('✅ Token saved successfully:', res);
         },
-      ],
-    });
+        error: (err) => {
+          console.error('❌ Error saving token:', err);
+        }
+      });
   }
-);
 
-  } catch (err) {
-    console.error('Mobile FCM error:', err);
-    throw err;
+
+  getNotifications(): Observable<any[]> {
+    const notifRef = collection(this.firestore, 'notifications');
+    const notifQuery = query(notifRef, orderBy('createdAt', 'desc'));
+    return collectionData(notifQuery, { idField: 'id' }) as Observable<any[]>;
   }
-}
-
-async saveTokenToBackend(username: string, fcmToken: string): Promise<void> {
-  console.log('📡 Sending token to backend:', username, fcmToken);
-
-  this.http.get(`${this.baseUrl}/waiter/tokensave/${username}/${fcmToken}`)
-    .subscribe({
-      next: (res) => {
-        console.log('✅ Token saved successfully:', res);
-      },
-      error: (err) => {
-        console.error('❌ Error saving token:', err);
-      }
-    });
-}
 
 
- getRequests(waiterId: string): Observable<any[]> {
-    const ref = collection(this.firestore, 'waiter_requests');
-    return collectionData(ref, { idField: 'id' }) as Observable<any[]>;
-}
 
- async acknowledgeRequest(requestId: string) {
-    const ref = doc(this.firestore, `waiter_requests/${requestId}`);
+  async acknowledgeRequest(requestId: string) {
+    const ref = doc(this.firestore, `notifications/${requestId}`);
     await updateDoc(ref, { status: 'acknowledged' });
   }
 

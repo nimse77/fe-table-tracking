@@ -1,15 +1,22 @@
 <ion-header>
-  <ion-toolbar>
+  <ion-toolbar color="primary">
     <ion-title>Welcome Table {{ tableId }}</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content *ngIf="showOptions">
-  <ion-button 
-    expand="full" 
-    *ngFor="let action of actionType" 
-    (click)="sendRequest(action)">
-    {{ action }}
-  </ion-button>
-</ion-content>
+<ion-content *ngIf="showOptions" class="ion-padding">
 
+  <ion-list lines="full" class="radio-list">
+    <ion-radio-group [(ngModel)]="selectedAction">
+      <ion-item *ngFor="let action of actionType" class="radio-item">
+        <ion-label>{{ action }}</ion-label>
+        <ion-radio slot="start" [value]="action"></ion-radio>
+      </ion-item>
+    </ion-radio-group>
+  </ion-list>
+
+  <ion-button expand="block" shape="round" color="success" (click)="sendRequest(selectedAction)">
+    Submit
+  </ion-button>
+
+</ion-content>
