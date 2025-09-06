@@ -22,3 +22,4 @@ describe('NotificationsComponent', () => {
     expect(component).toBeTruthy();
   });
 });
+

@@ -15,19 +15,19 @@ import { ActivatedRoute } from '@angular/router';
 export class LocationCheckComponent {
 
   allowedRadiusInMeters = 100;
-   restaurantId!: string;
+  restaurantId!: string;
   tableId!: string;
-  restlat!:any;
-  restlng!:any;
+  restlat!: any;
+  restlng!: any;
   constructor(
     private route: ActivatedRoute,
     private alertController: AlertController,
     private router: Router,
     private tableService: TableService
-  ) {}
+  ) { }
 
   ngOnInit() {
-      this.restaurantId = this.route.snapshot.paramMap.get('restaurantId') || '';
+    this.restaurantId = this.route.snapshot.paramMap.get('restaurantId') || '';
     this.tableId = this.route.snapshot.paramMap.get('tableId') || '';
 
     console.log("Restaurant:", this.restaurantId);
@@ -37,12 +37,12 @@ export class LocationCheckComponent {
   }
 
 
-  getRestaruantInfo(restaurantId:string){
+  getRestaruantInfo(restaurantId: string) {
     this.tableService.getRestaruantInfo(restaurantId).subscribe(
-      (res)=>{
+      (res) => {
         console.log(res);
-        this.restlat=res.latitude,
-        this.restlng=res.longitude
+        this.restlat = res.latitude,
+          this.restlng = res.longitude
       }
     )
   }
@@ -114,82 +114,3 @@ export class LocationCheckComponent {
   }
 }
 
-
-// import { Component, OnInit } from '@angular/core';
-
-// @Component({
-//   selector: 'app-location-check',
-//   templateUrl: './location-check.component.html',
-//   styleUrls: ['./location-check.component.scss']
-// })
-// export class LocationCheckComponent  implements OnInit {
-
-//   constructor() { }
-
-//   ngOnInit() {}
-
-// }
-
-// import { Component } from '@angular/core';
-// import { Geolocation } from '@capacitor/geolocation';
-// import { AlertController } from '@ionic/angular';
-// import { Router } from '@angular/router';
-// import { TableService } from '../../services/Table/table.service';
-
-// @Component({
-//   selector: 'app-location-check',
-//   templateUrl: './location-check.component.html',
-//   styleUrls: ['./location-check.component.scss']
-// })
-// export class LocationCheckComponent {
-
-//   allowedRadiusInMeters = 100;
-//   tableId = 'table123'; 
-
-//   constructor(
-//     private alertController: AlertController,
-//     private router: Router,
-//     private tableService: TableService
-//   ) {}
-
-//    ngOnInit() {
-//     this.checkUserLocation();
-//   }
-
-//   async checkUserLocation() {
-//     const coords = await Geolocation.getCurrentPosition();
-
-//     const distance = this.tableService.calculateDistance(
-//       coords.coords.latitude,
-//       coords.coords.longitude,
-//       18.5204, 
-//       73.8567 
-//     );
-
-//     if (distance <= this.allowedRadiusInMeters) {
-//       this.showAlert('Success', 'You are within the allowed radius.', true);
-//     } else {
-//       this.showAlert('Success', 'You are within the allowed radius.', true);
-//       //this.showAlert('Access Denied', 'You are not within the allowed radius.', false);
-//     }
-//   }
-
-//   async showAlert(header: string, message: string, shouldRedirect: boolean) {
-//     const alert = await this.alertController.create({
-//       header,
-//       message,
-//       buttons: [
-//         {
-//           text: 'OK',
-//           handler: () => {
-//             if (shouldRedirect) {
-//               this.router.navigate(['/table-request', this.tableId]);
-//             }
-//           }
-//         }
-//       ]
-//     });
-
-//     await alert.present();
-//   }
-// }

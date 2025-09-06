@@ -1,19 +1,19 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
 
-import { TableRequestComponent } from './table-request.component';
+import { WaiterRegistrationComponent } from './waiter-registration.component';
 
-describe('TableRequestComponent', () => {
-  let component: TableRequestComponent;
-  let fixture: ComponentFixture<TableRequestComponent>;
+describe('WaiterRegistrationComponent', () => {
+  let component: WaiterRegistrationComponent;
+  let fixture: ComponentFixture<WaiterRegistrationComponent>;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ TableRequestComponent ],
+      declarations: [ WaiterRegistrationComponent ],
       imports: [IonicModule.forRoot()]
     }).compileComponents();
 
-    fixture = TestBed.createComponent(TableRequestComponent);
+    fixture = TestBed.createComponent(WaiterRegistrationComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   }));

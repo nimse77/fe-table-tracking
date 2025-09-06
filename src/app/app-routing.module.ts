@@ -5,6 +5,7 @@ import { LocationCheckComponent } from './component/location-check/location-chec
 import {TableRequestComponent } from './component/table-request/table-request.component';
 import { LoginComponent } from './component/login/login.component';
 import { NotificationsComponent} from './component/notification/notifications.component'
+import { WaiterRegistrationComponent } from './component/registeration/waiter-registration.component';
 const routes: Routes = [
   //  {
   //   path: '',
@@ -49,7 +50,12 @@ const routes: Routes = [
  {
     path: 'qr',
     component: QRScanComponent
+  },
+  {
+    path:'waiter-register',
+    component: WaiterRegistrationComponent
   }
+  
 ];
 
 @NgModule({

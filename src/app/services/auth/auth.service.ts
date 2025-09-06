@@ -13,8 +13,14 @@ export class AuthService {
     private http:HttpClient,
   ) { }
 
-   login(WaiterInfo:any): Observable<any> {
+   register(WaiterInfo:any): Observable<any> {
     console.log('📡 Sending username to backend:', WaiterInfo);
     return this.http.post<any>(`${this.baseUrl}/waiter/save`, WaiterInfo);
   }
+  
+   checkUser(username:any): Observable<any> {
+    console.log('📡 Sending username to backend:', username);
+    return this.http.get<any>(`${this.baseUrl}/waiter/login/${username}`);
+  }
+  
 }

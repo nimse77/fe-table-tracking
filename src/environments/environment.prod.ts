@@ -1,7 +1,7 @@
 export const environment = {
  production: true,
- // baseUrl: 'http://13.232.106.27:8080/api',
-  baseUrl: 'https://13.201.90.206/api',
+  baseUrl: 'http://13.232.106.27:8080/api',
+  //baseUrl: 'https://3.110.160.235/api',
   firebase: 
      {
       apiKey: "AIzaSyApJCgC0bWtwYem7kXRlqkbrRcpdn_oIBQ",
