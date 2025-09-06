@@ -36,8 +36,7 @@ export class FirebaseMessagingService {
   }
 
   /**
-   * Request notification permission and register FCM
-   */
+   * Request notification permission and register FCM */
   async requestPermissionAndSaveToken(username: string): Promise<void> {
     if (Capacitor.getPlatform() === 'web') {
       await this.requestWebPermission(username);

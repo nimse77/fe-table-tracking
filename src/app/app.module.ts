@@ -16,7 +16,6 @@ import { LoginComponent } from './component/login/login.component';
 import { provideFirebaseApp, initializeApp } from '@angular/fire/app';
 import { provideAuth, getAuth } from '@angular/fire/auth';
 import { FormsModule } from '@angular/forms';
-
 import { environment } from '../environments/environment';
 
 @NgModule({

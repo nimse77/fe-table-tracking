@@ -78,3 +78,4 @@ export class QRScanComponent implements OnInit {
     await alert.present();
   }
 }
+

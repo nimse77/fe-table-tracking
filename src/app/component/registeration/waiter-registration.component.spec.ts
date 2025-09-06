@@ -22,3 +22,4 @@ describe('WaiterRegistrationComponent', () => {
     expect(component).toBeTruthy();
   });
 });
+

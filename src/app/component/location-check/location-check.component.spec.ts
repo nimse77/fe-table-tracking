@@ -22,3 +22,4 @@ describe('LocationCheckComponent', () => {
     expect(component).toBeTruthy();
   });
 });
+

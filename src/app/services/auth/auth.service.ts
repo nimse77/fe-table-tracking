@@ -22,4 +22,5 @@ export class AuthService {
     console.log('📡 Sending username to backend:', username);
     return this.http.get<any>(`${this.baseUrl}/waiter/login/${username}`);
   }
+  
 }

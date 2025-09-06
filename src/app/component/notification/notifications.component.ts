@@ -33,4 +33,5 @@ export class NotificationsComponent implements OnInit {
     this.fcm.acknowledgeRequest(req.id);
   }
 
+  
 }

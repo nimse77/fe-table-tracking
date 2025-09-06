@@ -55,6 +55,7 @@ const routes: Routes = [
     path:'waiter-register',
     component: WaiterRegistrationComponent
   }
+  
 ];
 
 @NgModule({

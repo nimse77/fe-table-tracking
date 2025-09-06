@@ -22,3 +22,4 @@ describe('TableRequestComponent', () => {
     expect(component).toBeTruthy();
   });
 });
+

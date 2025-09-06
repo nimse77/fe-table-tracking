@@ -22,3 +22,4 @@ describe('QRScanComponent', () => {
     expect(component).toBeTruthy();
   });
 });
+

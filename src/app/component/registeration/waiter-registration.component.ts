@@ -51,34 +51,4 @@ async onRegister() {
   });
 }
 
-
-  // async onRegister() {
-  //   if (this.registrationForm.invalid) {
-  //     this.message = 'Please fill all fields correctly.';
-  //     return;
-  //   }
-
-  //   this.loading = true;
-  //   this.message = '';
-
-  //   const { username, password, restaurantId } = this.registrationForm.value;
-
-  //   try {
-  //     const backendRes: any = await this.http.post(
-  //       `${environment.baseUrl}/waiter/register`,
-  //       { username, password, restaurantId }
-  //     ).toPromise();
-
-  //     console.log('Waiter registered:', backendRes);
-
-  //     await this.fcmService.requestPermissionAndSaveToken(username);
-
-  //     this.message = 'Registration successful and FCM token saved!';
-  //   } catch (err) {
-  //     console.error('Registration error:', err);
-  //     this.message = 'Registration failed. Please try again.';
-  //   } finally {
-  //     this.loading = false;
-  //   }
-  // }
 }

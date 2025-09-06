@@ -113,3 +113,4 @@ export class LocationCheckComponent {
     await alert.present();
   }
 }
+

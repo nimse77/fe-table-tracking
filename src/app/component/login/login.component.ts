@@ -40,8 +40,8 @@ export class LoginComponent implements OnInit {
     } else {
       this.errorMessage = 'User not registered. Please sign up.';
     }
-  }
-});
+   }
+ });
 }
 
   goToRegister() {
