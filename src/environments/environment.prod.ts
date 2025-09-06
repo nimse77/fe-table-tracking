@@ -15,3 +15,4 @@ export const environment = {
       vapidKey: "BIUNHe857C8p6JryUbDeYx3MWqimXs6i9PfdmTkWRhvMYlfkrVPOAL0669goz7KFFQQSnUP_esTWPWhhPpUFj-k"
     }
 };
+
