@@ -1,8 +1,8 @@
 
 export const environment = {
-  production: false,
-   baseUrl:'http://10.41.131.88:8080/api',
-  //baseUrl: 'https://3.110.160.235/api',
+ production: true,
+ // baseUrl: 'http://13.232.106.27:8080/api',
+  baseUrl: 'https://13.201.90.206/api',
   firebase: 
      {
       apiKey: "AIzaSyApJCgC0bWtwYem7kXRlqkbrRcpdn_oIBQ",
@@ -15,3 +15,4 @@ export const environment = {
       vapidKey: "BIUNHe857C8p6JryUbDeYx3MWqimXs6i9PfdmTkWRhvMYlfkrVPOAL0669goz7KFFQQSnUP_esTWPWhhPpUFj-k"
     }
 };
+
