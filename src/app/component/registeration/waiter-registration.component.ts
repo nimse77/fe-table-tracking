@@ -8,13 +8,13 @@ import { AuthService } from '../../services/auth/auth.service';
 import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
-
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-waiter-registration',
   templateUrl: './waiter-registration.component.html',
   styleUrls: ['./waiter-registration.component.scss'],
-  imports: [IonicModule, FormsModule],
+  imports: [IonicModule, FormsModule,CommonModule],
 })
 export class WaiterRegistrationComponent  implements OnInit {
 
